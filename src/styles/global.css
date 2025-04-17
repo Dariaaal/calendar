@@ -1,0 +1,95 @@
+:root {
+  /* Fonts */
+  --font-primary: 'Source Sans Pro', sans-serif;
+
+  /* Colors */
+  --color-bg-primary: #F0F0F7;
+  --color-bg-secondary: #F5F6FA;
+  --color-accent: #3B86FF;
+  --color-bg-sidebar: #43425D;
+  --color-sidebar-hover: #3a3953;
+  --color-sidebar-line-hover: #A3A0FB;
+  --color-text-primary: #4D4F5C;
+  --color-text-secondary: #A3A6B4;
+  --color-text-white: #ffffff;
+  --color-bg-white: #ffffff;
+  --color-border: #EAF0F4;
+
+  /* Transition */
+  --time-function: 0.3s ease-out;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--font-primary);
+  background-color: var(--color-bg-primary);
+}
+
+body,
+ul,
+li,
+h1,
+h2,
+h3,
+p,
+fieldset,
+input {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a,
+.react-router-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.react-router-link:hover,
+.react-router-link:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
+.react-router-link:active {
+  color: inherit;
+}
+
+/* Flex styles */
+.fx {
+  display: flex;
+}
+
+.fx--col {
+  flex-direction: column;
+}
+
+.fx-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fx--justify-sb {
+  justify-content: space-between;
+}
+
+.fx--ai-center {
+  align-items: center;
+}
+
+/* Containers */
+.container-relative {
+  position: relative;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.bg-white {
+  background-color: var(--color-bg-white);
+}
