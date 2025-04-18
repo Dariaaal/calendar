@@ -1,19 +1,22 @@
 :root {
   /* Fonts */
-  --font-primary: 'Source Sans Pro', sans-serif;
+  --font-primary: "Source Sans Pro", sans-serif;
 
   /* Colors */
-  --color-bg-primary: #F0F0F7;
-  --color-bg-secondary: #F5F6FA;
-  --color-accent: #3B86FF;
-  --color-bg-sidebar: #43425D;
+  --color-bg-primary: #f0f0f7;
+  --color-bg-secondary: #f5f6fa;
+  --color-accent: #3b86ff;
+  --color-bg-sidebar: #43425d;
   --color-sidebar-hover: #3a3953;
-  --color-sidebar-line-hover: #A3A0FB;
-  --color-text-primary: #4D4F5C;
-  --color-text-secondary: #A3A6B4;
+  --color-sidebar-line-hover: #a3a0fb;
+  --color-text-primary: #4d4f5c;
+  --color-text-secondary: #a3a6b4;
   --color-text-white: #ffffff;
   --color-bg-white: #ffffff;
-  --color-border: #EAF0F4;
+  --color-border: #eaf0f4;
+  --color-buttons-border: #d7dae2;
+  --color-button-cancel: #FF5F5F;
+  --color-input-label: #D6D6D6;
 
   /* Transition */
   --time-function: 0.3s ease-out;
@@ -22,7 +25,7 @@
 * {
   box-sizing: border-box;
   font-family: var(--font-primary);
-  background-color: var(--color-bg-primary);
+  /* background-color: var(--color-bg-primary); */
 }
 
 body,
@@ -90,6 +93,70 @@ a,
   width: 100%;
 }
 
+.bg-primary {
+  background-color: var(--color-bg-primary);
+}
+
 .bg-white {
   background-color: var(--color-bg-white);
 }
+
+/* Calendar styles */
+
+.fc-theme-standard th {
+  background-color: var(--color-bg-primary);
+  border: none;
+  border-bottom: 1px solid var(--fc-border-color);
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  color: var(--color-text-secondary) !important;
+}
+
+.fc-theme-standard thead tr th:last-child {
+  border-right: 1px solid var(--fc-border-color);
+}
+
+.fc-theme-standard th .fc-scrollgrid-sync-inner {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.fc-daygrid-day-frame {
+  height: 100%;
+}
+
+.fc .fc-scrollgrid-section-sticky > * {
+  position: static;
+}
+
+.fc .fc-highlight {
+  background-color: var(--color-bg-white);
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: var(--color-bg-primary);
+}
+
+.fc .fc-timegrid-day.fc-day-today,
+.fc .fc-day.fc-day-today {
+  background-color: var(--color-bg-primary);
+}
+
+.fc-timegrid-divider {
+  display: none;
+}
+
+.fc .fc-timegrid-slot-minor {
+  display: none;
+}
+
+.fc-timegrid-slot {
+  height: 49px !important;
+}
+
+.fc-timegrid-bg .fc-timegrid-slot {
+  height: 49px !important;
+}
+

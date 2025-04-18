@@ -80,20 +80,18 @@ const Layout = () => {
           </div>
           <div
             className={cx(
-              "bg-white",
               "fx",
               "fx--ai-center",
               css["layout-user-container"]
             )}
             ref={menuRef}
+            onClick={() => setMenuOpen(!menuOpen)}
           >
             <div className={css["layout-line"]}></div>
             <span className={css["layout-user-name"]}>John Doe</span>
             <div
-              onClick={() => setMenuOpen(!menuOpen)}
               className={cx(
                 css["layout-icon-btn"],
-                "bg-white",
                 menuOpen && css["rotate"]
               )}
             >
@@ -117,7 +115,7 @@ const Layout = () => {
           </div>
         </header>
 
-        <main className={css["layout-content"]}>
+        <main className={cx("bg-primary", css["layout-content"])}>
           <Outlet />
         </main>
       </div>

@@ -5,7 +5,6 @@ export const ArrowDownIcon = () => {
       width="11"
       height="7"
       viewBox="0 0 11 7"
-      className="bg-white"
     >
       <path
         fill="#a4afb7"

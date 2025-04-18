@@ -5,7 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import HomePage from "../pages/HomePage";
-import CalendarPage from "../pages/CalendarPage";
+import CalendarPage from "../pages/CalendarPage/CalendarPage";
 import ChatRoomPage from "../pages/ChatRoomPage";
 import CustomersPage from "../pages/CustomersPage";
 import DashboardPage from "../pages/DashboardPage";

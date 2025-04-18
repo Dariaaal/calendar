@@ -1,0 +1,123 @@
+.calendar-wrapper {
+  padding: 19px 20px 35px 20px;
+  max-width: 1170px;
+  margin: auto;
+  background-color: var(--color-bg-white);
+  box-shadow: 0px 2px 6px #0000000a;
+}
+
+.calendar-header {
+  margin-bottom: 15px;
+}
+
+.calendar-title-container {
+  margin-bottom: 24px;
+}
+
+.calendar-controls {
+  display: flex;
+  box-shadow: 0px 2px 3px #0000000d;
+  border: 1px solid var(--color-buttons-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.calendar-controls button {
+  padding: 8px 16px;
+  background-color: var(--color-bg-white);
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  border: none;
+  border-radius: 0;
+}
+
+.calendar-controls button + button {
+  border-left: 1px solid var(--color-buttons-border);
+}
+
+.calendar-controls button:hover {
+  color: var(--color-accent);
+}
+
+.active {
+  color: var(--color-accent) !important;
+}
+
+.calendar-text {
+  font-size: 18px;
+  color: var(--color-text-primary);
+}
+
+.modal {
+  background-color: var(--color-bg-white);
+  padding: 22px 26px;
+  width: 201px;
+  margin: auto;
+  box-shadow: 0px 3px 18px #00000029;
+  border: 1px solid var(--color-bg-sidebar);
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 2;
+}
+
+.button-close {
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-bg-white);
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  position: absolute;
+  top: 6px;
+  right: 7px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+}
+
+.input {
+  display: block;
+  margin-bottom: 20.5px;
+  width: 100%;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid var(--color-input-label);
+  outline: none;
+}
+
+.calendar-input-label {
+  font-size: 9px;
+  color: var(--color-input-label);
+}
+
+.modal-actions {
+  margin-top: 37.5px;
+}
+
+.button {
+  background-color: var(--color-bg-white);
+  border: none;
+  cursor: pointer;
+}
+
+.button-left {
+  color: var(--color-button-cancel);
+}
+
+.button-right {
+  color: var(--color-text-primary);
+}
+
+.month-cell {
+    height: 135px !important;
+  }
