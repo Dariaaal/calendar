@@ -26,6 +26,7 @@
 
 .layout-nav-link {
   position: relative;
+  gap: 11px;
   font-size: 15px;
   padding: 25px 18px;
   padding-left: 23px;
@@ -47,12 +48,24 @@
 
 .layout-nav-link:hover::before,
 .layout-nav-link.active::before {
-  background-color: #a3a0fb;
+  background-color: var(--color-sidebar-line-hover);
 }
 
 .layout-nav-link:hover,
 .layout-nav-link.active {
   background-color: var(--color-sidebar-hover);
+}
+
+.layout-nav-link path, .layout-nav-link rect{
+  fill: #A5A4BF;
+  stroke: #A5A4BF;
+  transition: fill var(--time-function);
+}
+
+.layout-nav-link:hover path, .layout-nav-link:hover rect,
+.layout-nav-link.active path, .layout-nav-link.active rect {
+  fill: var(--color-sidebar-line-hover);
+  stroke: var(--color-sidebar-line-hover);
 }
 
 .layout-main {
