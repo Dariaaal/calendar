@@ -34,6 +34,11 @@ const Calendar: React.FC = () => {
     calendarRef.current?.getApi().view.title
   );
   const [activeView, setActiveView] = useState<string>("dayGridMonth");
+  const [modalPosition, setModalPosition] = useState<{
+    top: number;
+    left: number;
+  } | null>(null);
+  const [modalError, setModalError] = useState<string | null>(null);
 
   const handleViewChange = (view: string) => {
     setActiveView(view);
@@ -44,22 +49,53 @@ const Calendar: React.FC = () => {
     setIsEditMode(false);
     setCurrentEvent({
       start: selectInfo.startStr,
-      end: selectInfo.endStr, 
+      end: selectInfo.endStr,
       color: "var(--color-accent)",
     });
+
+    const target = selectInfo.jsEvent?.target as HTMLElement;
+    if (target) {
+      const rect = target.getBoundingClientRect();
+      const modalWidth = 201;
+      const offsetY = 20;
+
+      const centerX = rect.left + rect.width / 2;
+      const bottomY = rect.bottom;
+
+      setModalPosition({
+        top: bottomY - offsetY + window.scrollY,
+        left: centerX - modalWidth / 2 + window.scrollX,
+      });
+    }
+
     setModalIsOpen(true);
   };
 
   const handleEventClick = (clickInfo: EventClickArg) => {
-    const { id, title, start, end, backgroundColor } = clickInfo.event;
     setIsEditMode(true);
     setCurrentEvent({
-      id,
-      title,
-      start: start?.toISOString(),
-      end: end?.toISOString(),
-      color: backgroundColor || "#3b82f6",
+      id: clickInfo.event.id,
+      title: clickInfo.event.title,
+      start: clickInfo.event.startStr,
+      end: clickInfo.event.endStr,
+      color: clickInfo.event.backgroundColor,
     });
+
+    const target = clickInfo.jsEvent?.target as HTMLElement;
+    if (target) {
+      const rect = target.getBoundingClientRect();
+      const modalWidth = 300;
+      const offsetY = 20;
+
+      const centerX = rect.left + rect.width / 2;
+      const bottomY = rect.bottom;
+
+      setModalPosition({
+        top: bottomY - offsetY + window.scrollY,
+        left: centerX - modalWidth / 2 + window.scrollX,
+      });
+    }
+
     setModalIsOpen(true);
   };
 
@@ -77,11 +113,17 @@ const Calendar: React.FC = () => {
   };
 
   const handleSave = () => {
-    if (!currentEvent.title || !currentEvent.start) return;
-    if (currentEvent.title.length > 30) {
-      alert("Event title must be 30 characters or less.");
+    if (!currentEvent.title || !currentEvent.start || !currentEvent.end) {
+      setModalError("All fields are required.");
       return;
     }
+
+    if (currentEvent.title.length > 30) {
+      setModalError("Event title must be 30 characters or less.");
+      return;
+    }
+
+    setModalError(null);
 
     if (isEditMode && currentEvent.id) {
       setEvents((prev) =>
@@ -118,7 +160,10 @@ const Calendar: React.FC = () => {
         backgroundColor: eventInfo.event.backgroundColor,
         fontSize: "13px",
         color: "var(--color-text-white)",
-        padding: "7px 14px",
+        padding:
+          (activeView === "dayGridMonth" && "7px 14px") ||
+          (activeView === "timeGridWeek" && "3px 14px") ||
+          "7px 14px",
         borderRadius: "4px",
         width: "100%",
       }}
@@ -169,6 +214,11 @@ const Calendar: React.FC = () => {
         start: newTime,
       });
     }
+  };
+
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+    setModalError(null);
   };
 
   return (
@@ -241,16 +291,22 @@ const Calendar: React.FC = () => {
         eventClick={handleEventClick}
         eventDrop={handleEventDrop}
         eventContent={renderEventContent}
+        slotLabelFormat={{
+          hour: "numeric",
+          minute: "2-digit",
+          meridiem: "short",
+          hour12: true,
+        }}
         height="auto"
         headerToolbar={false}
         datesSet={(arg) => {
-            setCurrentTitle(arg.view.title);    
-            if (arg.view.type === "dayGridMonth") {
-              document.querySelectorAll(".fc-daygrid-day-frame").forEach((el) => {
-                el.classList.add(css["month-cell"]);
-              });
-            }
-          }}
+          setCurrentTitle(arg.view.title);
+          if (arg.view.type === "dayGridMonth") {
+            document.querySelectorAll(".fc-daygrid-day-frame").forEach((el) => {
+              el.classList.add(css["month-cell"]);
+            });
+          }
+        }}
         timeZone="local"
         dayCellDidMount={(arg) => {
           if (calendarRef.current?.getApi().view.type === "dayGridMonth") {
@@ -261,13 +317,23 @@ const Calendar: React.FC = () => {
 
       <Modal
         isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
+        onRequestClose={handleCloseModal}
         className={css["modal"]}
         overlayClassName={css["overlay"]}
+        style={{
+          content: {
+            top: modalPosition?.top ?? "50%",
+            left: modalPosition?.left ?? "50%",
+            right: "auto",
+            bottom: "auto",
+            transform: "none",
+            position: "absolute",
+          },
+        }}
       >
         <button
           className={css["button-close"]}
-          onClick={() => setModalIsOpen(false)}
+          onClick={handleCloseModal}
         >
           <CloseIcon />
         </button>
@@ -315,6 +381,9 @@ const Calendar: React.FC = () => {
             setCurrentEvent({ ...currentEvent, color: e.target.value })
           }
         />
+        {modalError !== null && (
+          <p className={css["calendar-error"]}>{modalError}</p>
+        )}
 
         <div className={cx("fx", "fx--justify-sb", css["modal-actions"])}>
           {isEditMode ? (
@@ -327,7 +396,7 @@ const Calendar: React.FC = () => {
           ) : (
             <button
               className={cx(css["button"], css["button-left"])}
-              onClick={() => setModalIsOpen(false)}
+              onClick={handleCloseModal}
             >
               Cancel
             </button>

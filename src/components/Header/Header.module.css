@@ -1,0 +1,91 @@
+.layout-header {
+  height: 70px;
+  background-color: var(--color-bg-white);
+  padding: 16px 20px;
+  box-shadow: 0px 2px 6px #0000000a;
+}
+
+.layout-input-container {
+  gap: 12px;
+  background-color: var(--color-bg-white);
+}
+
+.layout-input-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.layout-input-icon > svg {
+  background-color: var(--color-bg-white);
+}
+
+.layout-input {
+  font-size: 13px;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-white);
+  width: 300px;
+  height: 100%;
+  border: none;
+  outline: none;
+}
+
+.layout-icons {
+  gap: 30px;
+  margin-right: 17px;
+}
+
+.layout-user-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.layout-user-name {
+  font-size: 13px;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-white);
+  margin-right: 15px;
+}
+
+.layout-user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  margin-left: 11px;
+}
+
+.layout-dropdown {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  width: 150px;
+}
+
+.layout-dropdown-item {
+  width: 100%;
+  padding: 10px 15px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.layout-dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+.rotate {
+  transform: rotate(180deg);
+  transition: transform var(--time-function);
+}
+
+.layout-line {
+  width: 1px;
+  height: 28px;
+  background-color: #ebebf2;
+  margin-right: 21px;
+}

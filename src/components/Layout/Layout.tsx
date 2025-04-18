@@ -1,9 +1,8 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import css from "./Layout.module.css";
 import { cx } from "../../lib/classNames";
-import { SearchIcon } from "../../icons/SearchIcon";
-import { ArrowDownIcon } from "../../icons/ArrowDownIcon";
 import { useState, useRef, useEffect } from "react";
+import Header from "../Header/Header";
 
 const navLinks = [
   { path: "/home", label: "Home" },
@@ -59,61 +58,7 @@ const Layout = () => {
       </aside>
 
       <div className={cx(css["layout-main"], "fx", "fx--col")}>
-        <header
-          className={cx(
-            css["layout-header"],
-            "fx",
-            "fx--justify-sb",
-            "fx--ai-center"
-          )}
-        >
-          <div
-            className={cx(css["layout-input-container"], "fx", "fx--ai-center")}
-          >
-            <div className={css["layout-input-icon"]}>
-              <SearchIcon />
-            </div>
-            <input
-              className={css["layout-input"]}
-              placeholder="Search transactions, invoices or help"
-            />
-          </div>
-          <div
-            className={cx(
-              "fx",
-              "fx--ai-center",
-              css["layout-user-container"]
-            )}
-            ref={menuRef}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <div className={css["layout-line"]}></div>
-            <span className={css["layout-user-name"]}>John Doe</span>
-            <div
-              className={cx(
-                css["layout-icon-btn"],
-                menuOpen && css["rotate"]
-              )}
-            >
-              <ArrowDownIcon />
-            </div>
-            <img
-              src="avatar.png"
-              alt="Avatar"
-              className={css["layout-user-avatar"]}
-            />
-
-            {menuOpen && (
-              <div className={css["layout-dropdown"]}>
-                <button className={css["layout-dropdown-item"]}>Profile</button>
-                <button className={css["layout-dropdown-item"]}>
-                  Settings
-                </button>
-                <button className={css["layout-dropdown-item"]}>Logout</button>
-              </div>
-            )}
-          </div>
-        </header>
+        <Header/>
 
         <main className={cx("bg-primary", css["layout-content"])}>
           <Outlet />

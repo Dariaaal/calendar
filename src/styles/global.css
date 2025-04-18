@@ -15,8 +15,8 @@
   --color-bg-white: #ffffff;
   --color-border: #eaf0f4;
   --color-buttons-border: #d7dae2;
-  --color-button-cancel: #FF5F5F;
-  --color-input-label: #D6D6D6;
+  --color-button-cancel: #ff5f5f;
+  --color-input-label: #d6d6d6;
 
   /* Transition */
   --time-function: 0.3s ease-out;
@@ -160,3 +160,21 @@ a,
   height: 49px !important;
 }
 
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.fc .fc-daygrid-day-number,
+.fc .fc-timegrid-axis-cushion {
+  color: var(--color-text-primary);
+}
+
+.fc-timegrid-event-harness > .fc-timegrid-event {
+  inset: unset;
+  width: 100%;
+}
+
+.fc-direction-ltr .fc-timegrid-col-events {
+  margin: 0;
+}
